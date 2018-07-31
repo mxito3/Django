@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>post方法提交表单</title>
+</head>
+<body>
+    <form action="/search_in_post" method="post">
+        {% csrf_token %}           <!--django提供的防止伪装提交表单的方法 -->
+        <input type="text" name="q">
+        <input type="submit" value="Submit">
+    </form>
+ <!-- 为表格处理预留位置 -->
+    <p>{{ rlt }}</p>    
+</body>
+</html>
