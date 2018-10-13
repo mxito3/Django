@@ -1,0 +1,22 @@
+１．新建项目
+	django-admin startproject projectName
+2.启动server
+	python manage.py runserver
+	python manage.py runserver 8080
+	python manage.py runserver 0:8080 
+3.创建应用
+	python manage.py startapp appName
+4.应用数据库文件
+	python manage.py migrate
+５．监测模型的修改	，并把修改的部分做一次迁移，即生成迁移文件
+	python manage.py makemigrations polls
+６．第一次迁移的数据在 polls/migrations/0001_initial.py
+７．将迁移的数据转化成sql
+	python manage.py sqlmigrate polls 0001
+8.应用数据库文件
+	python manage.py migrate
+９．使用Django生成的ＡＰＩ
+	python manage.py shell    #进入交互式命令行
+
+10.	创建超级用户
+	python manage.py createsuperuser
