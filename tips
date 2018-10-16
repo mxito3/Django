@@ -1,0 +1,8 @@
+1.html模板中跨域
+	<form>
+		{% csrf_token %}
+	</form>
+2.html模板中获得for循环的次数：
+	{% for index in message%}
+		{{ forloop.counter }}
+	{% endfor %}	
