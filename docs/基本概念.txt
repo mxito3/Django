@@ -1,0 +1,30 @@
+1.WSGI:
+
+	web服务器网关接口，是一种标准，规定了在web服务器(nginx,apache,uWSGI等)与web应用(例如flask,Django写的应用)通信的规范。
+2.uWSGI
+
+uWSGI是一个全功能的HTTP服务器，实现了WSGI协议、uwsgi协议、http协议等。它要做的就是把HTTP协议转化成语言支持的网络协议。比如把HTTP协议转化成WSGI协议，让Python可以直接使用。
+
+3.uwsgi
+
+与WSGI一样，是uWSGI服务器的独占通信协议，用于定义传输信息的类型(type of information)。每一个uwsgi packet前4byte为传输信息类型的描述，与WSGI协议是两种东西，据说该协议是fcgi协议的10倍快。
+
+4.Nginx
+
+Nginx是一个Web服务器其中的HTTP服务器功能和uWSGI功能很类似，但是Nginx还可以用作更多用途，比如最常用的反向代理功能。
+
+5.gunicorn 
+
+一个WSGI服务器(uWSGI也是一种WSGI服务器),配置较WSGI简单
+
+6.正向代理
+
+x想访问z,但是x的网络管理员封了z,但是代理服务器Y可以访问z,
+故x->z的过程分解为x->y;y->z;x->y
+
+7.反向代理
+
+没有代理的情况下，访问仍然是 X--->Z，但是在某些情况下，Z的管理者决定限制资源被直接访问。用户必须现在Y上做访问，Y再访问Z。整个流程是X--->Y，然后Y---->Z，最后X---->Y。例如超大流量的网站设置反向代理服务器将用户的访问导入到离他最近的网站(色情网站) 
+
+
+
