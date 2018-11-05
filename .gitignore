@@ -3,6 +3,10 @@ venv/
 db.sqlite3
 *initial.py
 .idea/
+collected/
+blog_project/static/admin/
+nohup.out
+blog_project/log/
 
 
 
