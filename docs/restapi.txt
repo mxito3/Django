@@ -18,3 +18,20 @@
 
 	delete:
 		curl -i -H "Accept:application/json" -X delete http://127.0.0.1:8000/snippets/5/
+
+2.使用rest_framework提供的response可以返回客户端要求的content-type类型	的数据
+
+3.使用rest_framework提供的request(extend HTTP_response)可以提供更具有扩展性质的request parse
+	用法：
+		request.POST  只处理表单数据，只用于post方法
+		request.data　　处理任意数据，可用于put patch post
+４．status 
+	from rest_framework import status
+	使用该模块提供的状态码标识，而不是数字
+	post:status.HTTP_201_CREATED
+	404:status.HTTP_400_BAD_REQUEST
+	deletet:status.HTTP_204_NO_CONTENT
+	请求无效：status.HTTP_400_BAD_REQUEST
+5.api视图：
+	@api_view用于处理基于函数的视图的装饰器。
+	APIView基于类的视图工作。	

@@ -7,6 +7,8 @@ collected/
 blog_project/static/admin/
 nohup.out
 blog_project/log/
+mysite/.gitignore
+restapi/restapi/quickstart/migrations/0002_auto_20181105_1353.py
 
 
 
