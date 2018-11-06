@@ -22,3 +22,4 @@
 	python manage.py createsuperuser
 11.	拉取项目用到的所有静态文件(包括admin页面的)
 	python manage.py collectstatic
+12.	

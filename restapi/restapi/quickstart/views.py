@@ -31,6 +31,7 @@ class VideoViewSet(viewsets.ModelViewSet):
     serializer_class = VideoSerializer
 
 
+#post
 def get_name(request):
     # if this is a POST request we need to process the form data
     if request.method == 'POST':

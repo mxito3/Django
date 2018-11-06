@@ -1,0 +1,20 @@
+1.使用curl 调试api 
+	选项：
+		-i　显示响应头
+		-H  向资源请求头部
+		-X  传递HTTP方法名称
+		-d  传入双引号中的参数，多个参数用’&’分割
+	get :
+		curl -i -H "Accept: application/json" -X GET http://localhost:8000/snippets/
+		URL后面一定要有/
+
+	post :
+		curl -i -H "Accept: application/json" -X POST -d '{"code": "yapie is the best"}' http://127.0.0.1:8000/snippets/	
+
+		-d后面的参数用json字符串的形式,只需要填必填字段就可以通过
+
+	put :
+		curl -i -H "Accept:application/json" -X put -d '{"code":"yapie is the best ,you are right"}' http://127.0.0.1:8000/snippets/5/
+
+	delete:
+		curl -i -H "Accept:application/json" -X delete http://127.0.0.1:8000/snippets/5/
