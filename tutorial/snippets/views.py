@@ -39,12 +39,3 @@ class UserViewSet(viewsets.ReadOnlyModelViewSet):
     """
     queryset = User.objects.all()
     serializer_class = UserSerializer
-
-
-@api_view(['GET'])
-def api_root(request, format=None):
-        # reverse返回完全编码的url格式，第一个参数是url name
-    return Response({
-        'users': reverse('user-list', request=request, format=format),
-        'snippets': reverse('snippet-list', request=request, format=format)
-    })
