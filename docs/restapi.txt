@@ -18,6 +18,8 @@
 
 	delete:
 		curl -i -H "Accept:application/json" -X delete http://127.0.0.1:8000/snippets/5/
+	使用user:
+		curl -i -H "Accept: application/json" -X POST -d 'code=hello' http://127.0.0.1:8000/snippets/
 
 2.使用rest_framework提供的response可以返回客户端要求的content-type类型	的数据
 
@@ -35,3 +37,10 @@
 5.api视图：
 	@api_view用于处理基于函数的视图的装饰器。
 	APIView基于类的视图工作。	
+
+６.添加权限
+	主要是序列化器字段和模型的变更,默认使用了session,需要注意的是只读请求不会判断是否有权限
+
+7.DefaultRouter会为我们创建api_root,因此views.py可以删除api_root的定义
+8.生成api schema(api 文档)并用coreapi-cli与api 交互
+	https://www.django-rest-framework.org/tutorial/7-schemas-and-client-libraries/
