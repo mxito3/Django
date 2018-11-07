@@ -7,48 +7,38 @@ from snippets.permissions import IsOwnerOrReadOnly
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.reverse import reverse
-
 from rest_framework import renderers
+from rest_framework import viewsets
+from rest_framework.decorators import action
 
 
-class SnippetList(generics.ListCreateAPIView):
+class SnippetViewSet(viewsets.ModelViewSet):
+    """
+    viewset自动提供list create retrieve update destory动作
+    我们在这里提供了‘highlight’ action
+
+    """
     queryset = Snippet.objects.all()
     serializer_class = SnippetSerializer
-    # permission_classes用来限制权限
-    permission_classes = (
-        permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly)
-    # 存入模型前存入user
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,
+                          IsOwnerOrReadOnly,)
+    # action响应custom request,并且使用装饰器
+
+    @action(detail=True, renderer_classes=[renderers.StaticHTMLRenderer])
+    def highlight(self, request, *args, **kwargs):
+        snippet = self.get_object()
+        return Response(snippet.highlighted)
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
 
 
-class SnippetDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Snippet.objects.all()
-    serializer_class = SnippetSerializer
-    permission_classes = (
-        permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly)
-
-
-class UserList(generics.ListAPIView):
+class UserViewSet(viewsets.ReadOnlyModelViewSet):
+    """
+    This viewset automatically provides `list` and `detail` actions.
+    """
     queryset = User.objects.all()
     serializer_class = UserSerializer
-
-
-class UserDetail(generics.RetrieveAPIView):
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
-
-
-class SnippetHighlight(generics.GenericAPIView):
-    queryset = Snippet.objects.all()
-    renderer_classes = (renderers.StaticHTMLRenderer,)
-
-    def get(self, request, *args, **kwargs):
-        snippet = self.get_object()
-        # 返回的是用用户建立snippet实例时选择的render方式渲染的html(序列化后)
-
-        return Response(snippet.highlighted)
 
 
 @api_view(['GET'])
