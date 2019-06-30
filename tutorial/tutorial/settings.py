@@ -126,3 +126,51 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 10
 }
+
+LOG_PATH = os.path.join(BASE_DIR, "log/")
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
+        },
+        'simple': {
+            'format': '%(levelname)s %(message)s'
+        },
+    },
+    'handlers': {
+        'console': {
+            'level': 'INFO',
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose'
+        },
+        'file':{
+            'level':'INFO',
+            'class':'logging.handlers.RotatingFileHandler',
+            'formatter':'verbose',
+            'filename':"/home/yapie/github/Django/tutorial/tutorial/log/error.log",
+        },
+    },
+    'loggers': {
+        # 'django': {   #详细的
+        #     'handlers': ['console'],
+        #     'propagate': False,
+        # },
+        'django.request': {   #只显示404和500
+        'handlers': ['console'],
+        'propagate': False,
+        'level': 'DEBUG',
+        },
+        'django.server': {   #具体请求的url
+            'handlers': ['file','console'],
+            'propagate':False,
+            'level': 'DEBUG',
+        },
+        'django.db.backends': {  #数据库
+            'handlers': ['console','file'],
+            'level': 'ERROR',
+            'propagate': True,
+        },
+    }
+}

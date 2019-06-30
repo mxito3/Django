@@ -10,8 +10,11 @@ from rest_framework.reverse import reverse
 from rest_framework import renderers
 from rest_framework import viewsets
 from rest_framework.decorators import action
+import logging
+from django.http import HttpResponse
 
-
+logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
 class SnippetViewSet(viewsets.ModelViewSet):
     """
     viewset自动提供list create retrieve update destory动作
@@ -39,3 +42,9 @@ class UserViewSet(viewsets.ReadOnlyModelViewSet):
     """
     queryset = User.objects.all()
     serializer_class = UserSerializer
+
+def hello(request):
+    logger.info("here is hello")
+    logger.debug("here is debug")
+    logger.error("this is a error")
+    return HttpResponse("this is helo")

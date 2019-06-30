@@ -13,6 +13,8 @@ router.register(r'users', views.UserViewSet)
 urlpatterns = [
     path('', include(router.urls)),
     path('api-auth/', include('rest_framework.urls')),
+    path('hello', views.hello, name='hello')
+
 ]
 
 schema_view = get_schema_view(title='Pastebin API')
